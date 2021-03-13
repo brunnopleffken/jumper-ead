@@ -1,0 +1,30 @@
+<h1><%= @student.name %></h1>
+<h4 class="mb-5"><%= @lesson.title %></h4>
+
+<table class="table">
+  <tr>
+    <td><strong>Vídeo-aula</strong></td>
+    <td>
+      <% if @lesson.video_path.blank? %>
+        <img src="http://placehold.it/1280x800?text=Sem+vídeo" style="width: 960px">
+      <% else %>
+        <iframe width="960" height="600" src="https://www.youtube.com/embed/<%= @lesson.video_path %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Atividades</strong></td>
+    <td><%= link_to @lesson.activity_path, @lesson.activity_path, target: '_blank' %></td>
+  </tr>
+  <tr>
+    <td><strong>Envio das atividades</strong></td>
+    <td>
+      <%= form_for :activity, url: student_lesson_activity_path(@student, @lesson) do |f| %>
+        <div class="form-group mb-2">
+          <%= f.file_field :document, class: 'form-control' %>
+        </div>
+        <%= f.submit 'Enviar atividade', class: 'btn btn-primary' %>
+      <% end %>
+    </td>
+  </tr>
+</table>

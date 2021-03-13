@@ -1,0 +1,30 @@
+<h1><%= @student.name %></h1>
+
+<p>
+  <strong>Curso:</strong> Informática<br>
+  <strong>Professor:</strong> Prof. Brunno Pleffken<br>
+  <strong>Data de início:</strong> <%= @student.first_class_at %>
+</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Nome do aluno</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lessons.each do |l| %>
+      <tr>
+        <td><%= l.title %></td>
+        <td>
+          <% if l.activities.where(student_id: @student.id).any? %>
+            <span class="badge bg-success">Concluído</span>
+          <% else %>
+            <%= link_to 'Acessar', student_lesson_path(@student, l) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
