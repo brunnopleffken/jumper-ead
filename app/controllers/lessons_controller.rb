@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
   def index
     @student = Student.find(params[:student_id])
-    @lessons = Lesson.includes(:activities)
+    @lessons = Lesson.includes(:activities).order(:id)
   end
 
   def show
