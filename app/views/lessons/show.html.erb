@@ -21,7 +21,7 @@
     <td>
       <%= form_for :activity, url: student_lesson_activity_path(@student, @lesson) do |f| %>
         <div class="form-group mb-2">
-          <%= f.file_field :document, class: 'form-control' %>
+          <%= f.file_field :document, class: 'form-control', required: true %>
         </div>
         <%= f.submit 'Enviar atividade', class: 'btn btn-primary' %>
       <% end %>

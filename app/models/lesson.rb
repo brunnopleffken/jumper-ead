@@ -1,3 +1,3 @@
 class Lesson < ApplicationRecord
-  has_many :activities
+  has_one :activity
 end
