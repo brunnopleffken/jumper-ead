@@ -19,7 +19,7 @@
     </thead>
     <tbody>
       <% @lessons.each do |l| %>
-        <% activity = l.activity %>
+        <% activity = l.activities.where(student_id: @student.id).first %>
         <tr>
           <td style="width: 1%">
             <% unless activity.present? %>
