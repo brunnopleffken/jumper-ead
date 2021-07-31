@@ -14,6 +14,7 @@
       <tr>
         <th></th>
         <th>Nome do aluno</th>
+        <th></th>
         <th>Status</th>
       </tr>
     </thead>
@@ -27,6 +28,13 @@
             <% end %>
           </td>
           <td><%= l.title %></td>
+          <td class="text-muted" style="font-size: 10px; text-align: right">
+            <% if activity.present? %>
+              <% if activity.lesson_type == 0 %>
+                <%= localize(activity.created_at, format: :short) %>
+              <% end %>
+            <% end %>
+          </td>
           <td>
             <% if activity.present? %>
               <% if activity.lesson_type == 0 %>
