@@ -12,19 +12,26 @@
       <% end %>
     </td>
   </tr>
+  <% unless @lesson.activity_text.present? %>
+    <tr>
+      <td><strong>Atividades</strong></td>
+      <td><%= link_to @lesson.activity_path, @lesson.activity_path, target: '_blank' %></td>
+    </tr>
+  <% end %>
   <tr>
-    <td><strong>Atividades</strong></td>
-    <td><%= link_to @lesson.activity_path, @lesson.activity_path, target: '_blank' %></td>
-  </tr>
-  <tr>
-    <td><strong>Envio das atividades</strong></td>
+    <td><strong>Envio</strong></td>
     <td>
       <%= form_for :activity, url: student_lesson_activity_path(@student, @lesson) do |f| %>
-        <div class="form-group mb-2">
-          <%= f.file_field :document, class: 'form-control', required: true %>
-        </div>
-        <%= f.submit 'Enviar atividade', class: 'btn btn-primary' %>
+      <div class="row">
+        <div class="col"><%= f.file_field :document, class: 'form-control', required: true %></div>
+        <div class="col-auto"><%= f.submit 'Enviar atividade', class: 'btn btn-primary' %></div>
+      </div>
       <% end %>
     </td>
   </tr>
 </table>
+
+<% if @lesson.activity_text.present? %>
+  <h2 class="mb-4">Atividades</h2>
+  <%= @lesson.activity_text.html_safe %>
+<% end %>

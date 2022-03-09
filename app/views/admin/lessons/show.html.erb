@@ -1,0 +1,35 @@
+<h1 class="mb-5">Admin: Atividades</h1>
+
+<%= form_for @lesson, url: admin_lesson_path do |f| %>
+  <table class="table">
+    <tr>
+      <td style="width: 1%">Nome:</td>
+      <td><%= f.text_field :title, class: 'form-control' %></td>
+    </tr>
+    <tr>
+      <td style="width: 1%">Vídeo:</td>
+      <td><%= f.text_field :video_path, class: 'form-control' %></td>
+    </tr>
+    <tr>
+      <td>Atividade:</td>
+      <td><%= f.text_area :activity_text, class: 'summernote', rows: 10 %></td>
+    </tr>
+  </table>
+  <div class="text-end">
+    <%= f.submit 'Atualizar', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<% content_for :head do %>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<% end %>
+<% content_for :scripts do %>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+  $('#lesson_activity_text').summernote({
+    tabsize: 2,
+    height: 300
+  });
+</script>
+<% end %>

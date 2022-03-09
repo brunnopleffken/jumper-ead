@@ -7,4 +7,9 @@ Rails.application.routes.draw do
       resource :activity
     end
   end
+
+  namespace :admin do
+    resources :lessons
+    resources :students
+  end
 end

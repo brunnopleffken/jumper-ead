@@ -1,0 +1,16 @@
+<h1 class="mb-5">Admin: Atividades</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Aula</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lessons.each do |l| %>
+      <tr>
+        <td><%= link_to l.title, admin_lesson_path(l) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

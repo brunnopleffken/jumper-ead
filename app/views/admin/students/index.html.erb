@@ -1,0 +1,32 @@
+<h1 class="mb-5">Admin: Alunos</h1>
+
+<%= form_for @student, url: admin_students_path do |f| %>
+  <div class="row align-items-center mb-3">
+    <div class="col-auto">Nome do aluno:</div>
+    <div class="col"><%= f.text_field :name, class: 'form-control' %></div>
+    <div class="col-auto">Turma:</div>
+    <div class="col"><%= f.collection_select :classroom_id, Classroom.all, :id, :weekday, {}, { class: 'form-select' } %></div>
+    <div class="col-auto">Início:</div>
+    <div class="col"><%= f.text_field :first_class_at, value: Date.current, class: 'form-control' %></div>
+    <div class="col-auto"><input type="submit" value="Adicionar" class="btn btn-primary"></div>
+  </div>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+    	<th>Aluno</th>
+      <th>Turma</th>
+      <th>Data de início</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |s| %>
+      <tr>
+        <td><%= s.name %></td>
+        <td><%= s.classroom.weekday %>, <%= s.classroom.hour %></td>
+        <td><%= localize(s.first_class_at, format: :long) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
